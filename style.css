@@ -1,0 +1,62 @@
+body{
+    background-image:url("images/images.jpg");
+    background-repeat:no-repeat;
+    background-size: 100%;
+}
+.pic{
+    /*float: left;*/
+    padding-right: 400px;
+    margin-top:0%;
+    
+}
+a{
+    color:black;
+}
+li{
+    /*float: center;*/
+    padding:9px 15px;
+    margin: 10% auto;
+   /* margin-top: -15px;*/
+    overflow: hidden;
+    display: inline;
+    
+    
+}
+
+li a{
+    /*margin-top: 0px;*/
+    color:white;
+    text-decoration: none;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+   
+}
+p{
+    font-size: 40px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: aliceblue;
+    text-align: center;
+    margin-top: 200px;
+}
+a:hover{
+    color:red;
+    cursor: pointer;
+}
+button{
+block-size: 20px;
+background-color: yellow;    
+}
+button:hover{
+    color:red;
+    cursor:pointer;
+}
+.butt1{
+    block-size: 20px;
+    background-color: yellow;
+    margin-left: 600px;
+    
+}
+.butt1:hover{
+    color: red;
+    cursor: pointer;
+}
