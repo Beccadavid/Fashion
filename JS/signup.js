@@ -18,9 +18,20 @@
 
 
 //declared this global variable so they can be accessed by all funtions
-let Name,Address,Email,Phone,Password,Cpassword;/*,male,female,dob;*/
-const date= Date.now();
-save.addEventListener("click", ()=>{
+let Name,Address,Email,Phone,Password,Cpassword,container,sendinglayout,successlayout,failed;/*,male,female,dob;*/
+    container=document.getElementById("container");
+    sendinglayout=document.getElementById("sendinglayout");
+    successlayout=document.getElementById("successlayout");
+    failed=document.getElementById("failed");
+
+    sendinglayout.style.display="none";
+    successlayout.style.display="none";
+    failed.style.display="none";
+    const submitdata=document.getElementById("submitdata");
+    submitdata.addEventListener("click" , () =>{
+
+    //const date= Date.now();
+    //save.addEventListener("click", ()=>{
      Name=document.getElementById("Name").value;
      Address=document.getElementById("Address").value;
      Email=document.getElementById("Email").value;
@@ -50,7 +61,16 @@ if(Name==null || Name==""){
         alert("incorrect password")
     }
     else{
-        alert("registered")
+        sendData()
+    }
+});
+    const sendData =()=>{
+        container.style.display="none";
+        sendinglayout.style.display="block";
+        sendToDatabase();
+    }
+    const sendToDatabase=() =>{
+        let docRef=db.collection("collect").doc(Phone)
         docRef.set({
             Fullname: Name,
             Address:Address,
@@ -63,11 +83,15 @@ if(Name==null || Name==""){
             dob:dob*/
   
       })
-      .then(function(){console.log("registrated successfully");
+      .then(function(){
+        sendinglayout.style.display="none";
+        successlayout.style.display="block";  
+        console.log("registrated successfully");
   })
-      .catch(function(error){console.log("Got an error:"+error);
+      .catch(function(error){
+        container.style.display="block";
+        failed.style.display="block";  
+        console.log("Got an error:",error);
   });
-  }
-     });
-  
-
+  };
+     

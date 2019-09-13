@@ -47,10 +47,12 @@ button:hover{
     cursor:pointer;
 }
 .form{
-    width:100%;
+    width:600px;
     font-size: 20px;
     text-align:center;
-    border:2px solid gray;
+    border:4px solid gray;
+    margin-left: 350px;
+    margin-top: 40px;
 }
 p a{
     color: rgb(38, 38, 168);

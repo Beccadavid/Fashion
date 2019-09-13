@@ -17,13 +17,24 @@
    const db=firebase.firestore();
 
    //create a collection and empty document and save the instance docRef variable
-   const docRef=db.doc("register/sample");
-   const save = document.getElementById("save");
+   //const docRef=db.doc("register/sample");
+   const save = document.getElementById("submitdata");
 
    //declared this global variable so they can be accessed by all funtions
-   let Sname,Lname,Email,Phone,Uname,Pass,CPass;
-   const date= Date.now();
-   save.addEventListener("click", ()=>{
+   let Sname,Lname,Email,Phone,Uname,Pass,CPass,container,sendinglayout,successlayout,failed;
+    container=document.getElementById("container");
+    sendinglayout=document.getElementById("sendinglayout");
+    successlayout=document.getElementById("successlayout");
+    failed=document.getElementById("failed");
+
+    sendinglayout.style.display="none";
+    successlayout.style.display="none";
+    failed.style.display="none";
+
+const submitdata=document.getElementById("submitdata");
+submitdata.addEventListener("click" , () =>{
+  // const date= Date.now();
+   //save.addEventListener("click", ()=>{
         let Sname =document.getElementById("Surname").value;
         let Lname =document.getElementById("Lastname").value;
         let Email =document.getElementById("Email").value;
@@ -31,9 +42,8 @@
         let Uname =document.getElementById("Username").value;
         let Pass = document.getElementById("Password").value;
         let CPass = document.getElementById("CPassword").value;
-
-
-        if (!Sname.match(/^[a-zA-Z]+$/)){
+        
+       if (!Sname.match(/^[a-zA-Z]+$/)){
             alert ("Input your Surname")
         }
         else if (!Lname.match(/^[a-zA-Z]+$/)){
@@ -55,7 +65,16 @@
             alert ("Invalid confirm password")
         }
         else {
-            alert ("Registred Successfully");
+            sendata()
+        };
+        const sendata =()=>{
+            container.style.display=none;
+            sendinglayout.style.display=block;
+            sendtodatabase();
+        }
+        const sendtodatabase=() =>{
+            let docRef=db.collection("container").doc(phone)
+        
         docRef.set({
           Surname: Sname,
           Lastname:Lname,
@@ -63,11 +82,14 @@
           Number: Phone,
           Password: Pass,
           Comfirmpassword: CPass
+        }).then (function (){
+            sendinglayout.style.display="none";
+            successlayout.syle.display="block";
+            console.log("successfully loaded");
+        }).catch(function(error){
+            container.style.display="block";
+            failed.style.display="block";
+            console.log("got an error:",error);
+        })
+    }
 
-    })
-    .then(function(){console.log("registrated successfully");
-})
-    .catch(function(error){console.log("Got an error:"+error);
-});
-}
-   });
