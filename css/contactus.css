@@ -98,5 +98,5 @@ input[type="password"]{
 
 }
 input:focus{
-    background: white;
+    background:#C2E2EC;
 }

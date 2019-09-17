@@ -1,27 +1,30 @@
+  // Your web app's Firebase configuration
   var firebaseConfig = {
-    apiKey: "AIzaSyBDyzoSR5nkgcgrm7Z5HKjekM3WACVE2v8",
-    authDomain: "fashion-house-project.firebaseapp.com",
-    databaseURL: "https://fashion-house-project.firebaseio.com",
-    projectId: "fashion-house-project",
-    storageBucket: "",
-    messagingSenderId: "829114247781",
-    appId: "1:829114247781:web:6887cc6579a1185c"
+    apiKey: "AIzaSyBBbYtX4SElETHBVL0j4zCnjEqH6xUydew",
+    authDomain: "fashion-house-88f18.firebaseapp.com",
+    databaseURL: "https://fashion-house-88f18.firebaseio.com",
+    projectId: "fashion-house-88f18",
+    storageBucket: "fashion-house-88f18.appspot.com",
+    messagingSenderId: "732411706688",
+    appId: "1:732411706688:web:784ef578132b27ff"
   };
-  // Initialize Firebase
+  
   firebase.initializeApp(firebaseConfig);
-  console.log("firebaseloaded");
+  console.log("firebase loaded");
   const db = firebase.firestore();
-  const docRef=db.collection("messages").doc();
+  const docRef = db.collection("messages").doc();
   const firestore = firebase.firestore();
   let save = document.getElementById("save");
-
-  save.addEventListener("click", () => {  
-    var name=document.getElementById("name").value;
-    var lname=document.getElementById("lastname").value;
-    var Email=document.getElementById("email").value;
-    var E= Email.includes("@");
-    var phone_num= document.getElementById("phone").value;
-    var sub= document.getElementById("subject").value;
+  
+   let name,lname,Email,phone,sub;
+   
+   save.addEventListener("click", () => {  
+     name=document.getElementById("name").value;
+     lname=document.getElementById("lastname").value;
+     Email=document.getElementById("email").value;
+     //E= Email.includes("@");
+     phone= document.getElementById("phone").value;
+     sub= document.getElementById("subject").value;
 
     if (!name.match(/^[a-zA-Z]+$/)){
       alert ("please input your frist name")
@@ -32,35 +35,28 @@
   else if (!Email.includes("@")) {
       alert ("Invalid Email ")
   }
-  else if (!phone_num.match(/^[0-9]+$/)||phone.length < 11 || phone_num.length > 11) {
+  else if (!phone.match(/^[0-9]+$/)||phone.length < 11 || phone.length > 11) {
       alert ("Incorrect Phone Number")
   }
   else if (!sub.match(/^[a-zA-Z]+$/)){
       alert ("Incorrect Message")
   }
   else {
-      alert ("your form has been submitted")
-     
-
-
-      docRef.set({
-        name:name,
-        lastname:lname,
-        email:Email,
-        phone:phone,
-        subject:subject
-      }
-      )
-      .then(function(){
-        console.log("Successfully Saved");
-      })
-      .catch(function(error){
-        console.log("Got an error:",error);
-      });
+    alert("your form has been submitted")
     }
-      })
-
+  });
+      let docRef=db.collection("identity").doc(phone)
+      docRef.set({
+          name:name,
+          lname:lname,
+          Email:Email,
+          phone:phone,
+          sub:sub
+        })
+        .then(function(){
+         console.log("registrated successfully");
+    })
+        .catch(function(error){
+          console.log("Got an error:",error);
+    });
     
-
-
-   
